@@ -1,0 +1,60 @@
+<mat-card class="form-section styled-form">
+  <h2 class="card-title">Add Task</h2>
+  <form [formGroup]="newTaskForm" (ngSubmit)="onAddTask()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Task Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter task title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Task details"></textarea>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="newTaskForm.invalid">Add Task</button>
+    </div>
+  </form>
+</mat-card>
+
+<mat-card class="card-wrapper">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 styled-table">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let task"> {{ task.id }} </td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let task"> {{ task.title }} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let task"> {{ task.description || 'No description' }} </td>
+    </ng-container>
+
+    <!-- Completed Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let task">
+        <ng-container *ngIf="task.isLocal; else readOnlyStatus">
+          <mat-checkbox [checked]="task.completed" (change)="onToggleTaskCompletion(task)">
+            {{ task.completed ? 'Completed' : 'Pending' }}
+          </mat-checkbox>
+        </ng-container>
+        <ng-template #readOnlyStatus >
+          <mat-icon color="warn">{{ task.completed ? 'check_circle' : 'cancel' }}</mat-icon>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+</mat-card>
