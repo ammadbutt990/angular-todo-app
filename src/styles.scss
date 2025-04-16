@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.styled-form {
+    padding: 20px;
+    max-width: 600px;
+    margin: 16px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+}

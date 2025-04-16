@@ -1,0 +1,32 @@
+.card-wrapper {
+    margin: 20px auto;
+    border-radius: 8px;
+  }
+  
+  .card-title {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #3f51b5;
+  }
+  
+  .styled-table {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .link-highlight {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .link-highlight:hover {
+    text-decoration: underline;
+  }
+
+  ::ng-deep .mat-mdc-header-cell {
+    font-weight: 600 !important;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
